@@ -18,7 +18,7 @@ class _MusicScreenState extends State<MusicScreen> {
       ),
       body: ListView.builder(
         itemCount: 5,
-        itemBuilder: (context, index) => ListTile(
+        itemBuilder: (context, index) => GestureDetector(
           onTap: () async {
             await AudioService.initAudio('assets/song/Champion.mp3');
             Navigator.of(context).push(
@@ -27,8 +27,10 @@ class _MusicScreenState extends State<MusicScreen> {
               ),
             );
           },
-          title: const Text('song name'),
-          subtitle: const Text('singer name'),
+          child: const ListTile(
+            title: Text('song name'),
+            subtitle: Text('singer name'),
+          ),
         ),
       ),
     );
