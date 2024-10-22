@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:media_player1/view/music_screen.dart';
+import 'package:media_player1/provider/song_provider.dart';
+import 'package:media_player1/view/home_page.dart';
+import 'package:media_player1/view/song_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
 }
-class MyApp extends StatefulWidget {
+
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MusicScreen(),
+    return ChangeNotifierProvider(
+      create: (context) => SongProvider(),
+      builder: (context, child) => MaterialApp(
+        routes: {
+          '/': (context) => SongPage(),
+          '/song': (context) => SongPlayPage(),
+        },
+      ),
     );
   }
 }
