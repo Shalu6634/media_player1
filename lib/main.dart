@@ -16,9 +16,10 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => SongProvider(),
       builder: (context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
         routes: {
-          '/': (context) => SongPage(),
-          '/song': (context) => SongPlayPage(),
+          '/': (context) => const SongPage(),
+          '/song': (context) => const SongPlayPage(),
         },
       ),
     );
