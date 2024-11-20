@@ -1,16 +1,30 @@
-# media_player1
+# Media Player App 🎵📹
 
-A new Flutter project.
+Features ✨
 
-## Getting Started
+#### Fetch Media from API 🌐
+Retrieve audio and video content from an API with seamless integration.
 
-This project is a starting point for a Flutter application.
+#### Detailed Media Screen 📄
+A dedicated detail screen displaying media information, including title, description, duration, and thumbnail.
 
-A few resources to get you started if this is your first Flutter project:
+#### Audio and Video Playback 🎧🎬
+Supports playback of both audio and video formats using Chewie and video_player.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#### State Management with Provider ⚡
+Efficient and scalable state management for data flow across the app.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### Customizable Controls 🎮
+Features like play, pause, seek, and fullscreen toggle for video playback.
+
+## Screens 📱
+#### Home Screen
+
+Displays a list of media fetched from the API (audio and video).
+Search and filter functionality for media.
+#### Details Screen
+
+Shows detailed information about selected media, including description, thumbnail, and playback options.
+#### Playback Screen
+
+A robust player interface with controls for audio and video playback.
