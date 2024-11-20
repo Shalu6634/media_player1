@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:media_player1/provider/search_provider.dart';
 import 'package:media_player1/provider/song_provider.dart';
 import 'package:media_player1/view/home_page.dart';
+import 'package:media_player1/view/searchScreen.dart';
 import 'package:media_player1/view/song_page.dart';
+import 'package:media_player1/view/splash.dart';
+import 'package:media_player1/view/splash_Screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -13,13 +17,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => SongProvider(),
-      builder: (context, child) => MaterialApp(
+    return MultiProvider(
+      providers:[
+        ChangeNotifierProvider(create: (context) => SongProvider(),),
+        ChangeNotifierProvider(create: (context) => SearchProvider(),),
+      ],
+      builder: (context, child) =>  MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (context) => const SongPage(),
-          '/song': (context) => const SongPlayPage(),
+          '/splash':(context)=>SplashScreen(),
+          '/':(context)=>SplashPage(),
+           '/home':(context)=>const HomePage(),
+          '/screen':(context)=>const SearchScreen(),
+          '/song':(context)=>const SongPlayPage(),
         },
       ),
     );

@@ -8,8 +8,9 @@ class SongProvider extends ChangeNotifier
   SongModal? songModal;
   Result? result;
   Duration? duration;
-
+  int nextSong=0;
   bool isPlay = false;
+  bool repeatSong = false;
   AudioPlayer player = AudioPlayer();
   Future<void> getSong()
   async {
@@ -19,10 +20,20 @@ class SongProvider extends ChangeNotifier
     notifyListeners();
   }
 
-
+  void checkSong()
+  {
+    isPlay=!isPlay;
+    (isPlay==true)?player.play():player.pause();
+    notifyListeners();
+  }
   void selectSong(Result selectedSong)
   {
     result = selectedSong;
+    notifyListeners();
+  }
+  void setSongResult(Result song)
+  {
+    result=song;
     notifyListeners();
   }
  Future<void> setSong(String url)
@@ -31,22 +42,38 @@ class SongProvider extends ChangeNotifier
   notifyListeners();
  }
 
- Future<void> playSong()
- async {
-   if(isPlay)
-     {
-       isPlay = false;
-       await player.pause();
-       print('======================================================');
-       notifyListeners();
-     }
-   else
-     {
-       isPlay = true;
-       await player.play();
-       notifyListeners();
-     }
+ Stream<Duration> getCurrentPosition()
+ {
+   return player.positionStream;
  }
+
+  Future<void> jumpSong(Duration position)
+  async {
+    await player.seek(position);
+    notifyListeners();
+  }
+
+
+
+
+  // Future<void> playSong()
+ // async {
+ //   // if(isPlay)
+ //   //   {
+ //   //     isPlay = false;
+ //   //     await player.pause();
+ //   //     print('======================================================');
+ //   //     notifyListeners();
+ //   //   // }
+ //   // else
+ //   //   {
+ //   //     isPlay = true;
+ //       await player.play();
+ //
+ //       print('song-------------');
+ //       notifyListeners();
+ //     // }
+ // }
   SongProvider()
   {
     getSong();

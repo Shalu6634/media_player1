@@ -1,11 +1,9 @@
 import 'dart:convert';
-
 SongModal songModalFromJson(String str) => SongModal.fromJson(json.decode(str));
-
 String songModalToJson(SongModal data) => json.encode(data.toJson());
 
 class SongModal {
-  bool success;
+  bool? success;
   Data data;
 
   SongModal({
@@ -13,15 +11,15 @@ class SongModal {
     required this.data,
   });
 
-  factory SongModal.fromJson(Map<String,dynamic> json) => SongModal(
-    success: json["success"],
-    data: Data.fromJson(json["data"]),
-  );
+  factory SongModal.fromJson(Map<String, dynamic> json) => SongModal(
+        success: json["success"],
+        data: Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": data.toJson(),
-  };
+        "success": success,
+        "data": data.toJson(),
+      };
 }
 
 class Data {
@@ -36,16 +34,17 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    total: json["total"],
-    start: json["start"],
-    results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
-  );
+        total: json["total"],
+        start: json["start"],
+        results:
+            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "total": total,
-    "start": start,
-    "results": List<dynamic>.from(results.map((x) => x.toJson())),
-  };
+        "total": total,
+        "start": start,
+        "results": List<dynamic>.from(results.map((x) => x.toJson())),
+      };
 }
 
 class Result {
@@ -90,46 +89,48 @@ class Result {
   });
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-    id: json["id"],
-    name: json["name"],
-    type: resultTypeValues.map[json["type"]]!,
-    year: json["year"],
-    releaseDate: json["releaseDate"],
-    duration: json["duration"],
-    label: json["label"],
-    explicitContent: json["explicitContent"],
-    playCount: json["playCount"],
-    language: languageValues.map[json["language"]]!,
-    hasLyrics: json["hasLyrics"],
-    lyricsId: json["lyricsId"],
-    url: json["url"],
-    copyright: json["copyright"],
-    album: Album.fromJson(json["album"]),
-    artists: Artists.fromJson(json["artists"]),
-    image: List<DownloadUrl>.from(json["image"].map((x) => DownloadUrl.fromJson(x))),
-    downloadUrl: List<DownloadUrl>.from(json["downloadUrl"].map((x) => DownloadUrl.fromJson(x))),
-  );
+        id: json["id"],
+        name: json["name"],
+        type: resultTypeValues.map[json["type"]]!,
+        year: json["year"],
+        releaseDate: json["releaseDate"],
+        duration: json["duration"],
+        label: json["label"],
+        explicitContent: json["explicitContent"],
+        playCount: json["playCount"],
+        language: languageValues.map[json["language"]]!,
+        hasLyrics: json["hasLyrics"],
+        lyricsId: json["lyricsId"],
+        url: json["url"],
+        copyright: json["copyright"],
+        album: Album.fromJson(json["album"]),
+        artists: Artists.fromJson(json["artists"]),
+        image: List<DownloadUrl>.from(
+            json["image"].map((x) => DownloadUrl.fromJson(x))),
+        downloadUrl: List<DownloadUrl>.from(
+            json["downloadUrl"].map((x) => DownloadUrl.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "type": resultTypeValues.reverse[type],
-    "year": year,
-    "releaseDate": releaseDate,
-    "duration": duration,
-    "label": label,
-    "explicitContent": explicitContent,
-    "playCount": playCount,
-    "language": languageValues.reverse[language],
-    "hasLyrics": hasLyrics,
-    "lyricsId": lyricsId,
-    "url": url,
-    "copyright": copyright,
-    "album": album.toJson(),
-    "artists": artists.toJson(),
-    "image": List<dynamic>.from(image.map((x) => x.toJson())),
-    "downloadUrl": List<dynamic>.from(downloadUrl.map((x) => x.toJson())),
-  };
+        "id": id,
+        "name": name,
+        "type": resultTypeValues.reverse[type],
+        "year": year,
+        "releaseDate": releaseDate,
+        "duration": duration,
+        "label": label,
+        "explicitContent": explicitContent,
+        "playCount": playCount,
+        "language": languageValues.reverse[language],
+        "hasLyrics": hasLyrics,
+        "lyricsId": lyricsId,
+        "url": url,
+        "copyright": copyright,
+        "album": album.toJson(),
+        "artists": artists.toJson(),
+        "image": List<dynamic>.from(image.map((x) => x.toJson())),
+        "downloadUrl": List<dynamic>.from(downloadUrl.map((x) => x.toJson())),
+      };
 }
 
 class Album {
@@ -144,16 +145,16 @@ class Album {
   });
 
   factory Album.fromJson(Map<String, dynamic> json) => Album(
-    id: json["id"],
-    name: json["name"],
-    url: json["url"],
-  );
+        id: json["id"],
+        name: json["name"],
+        url: json["url"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "url": url,
-  };
+        "id": id,
+        "name": name,
+        "url": url,
+      };
 }
 
 class Artists {
@@ -168,16 +169,16 @@ class Artists {
   });
 
   factory Artists.fromJson(Map<String, dynamic> json) => Artists(
-    primary: List<All>.from(json["primary"].map((x) => All.fromJson(x))),
-    featured: List<dynamic>.from(json["featured"].map((x) => x)),
-    all: List<All>.from(json["all"].map((x) => All.fromJson(x))),
-  );
+        primary: List<All>.from(json["primary"].map((x) => All.fromJson(x))),
+        featured: List<dynamic>.from(json["featured"].map((x) => x)),
+        all: List<All>.from(json["all"].map((x) => All.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "primary": List<dynamic>.from(primary.map((x) => x.toJson())),
-    "featured": List<dynamic>.from(featured.map((x) => x)),
-    "all": List<dynamic>.from(all.map((x) => x.toJson())),
-  };
+        "primary": List<dynamic>.from(primary.map((x) => x.toJson())),
+        "featured": List<dynamic>.from(featured.map((x) => x)),
+        "all": List<dynamic>.from(all.map((x) => x.toJson())),
+      };
 }
 
 class All {
@@ -198,22 +199,23 @@ class All {
   });
 
   factory All.fromJson(Map<String, dynamic> json) => All(
-    id: json["id"],
-    name: json["name"],
-    role: roleValues.map[json["role"]]!,
-    image: List<DownloadUrl>.from(json["image"].map((x) => DownloadUrl.fromJson(x))),
-    type: allTypeValues.map[json["type"]]!,
-    url: json["url"],
-  );
+        id: json["id"],
+        name: json["name"],
+        role: roleValues.map[json["role"]]!,
+        image: List<DownloadUrl>.from(
+            json["image"].map((x) => DownloadUrl.fromJson(x))),
+        type: allTypeValues.map[json["type"]]!,
+        url: json["url"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "role": roleValues.reverse[role],
-    "image": List<dynamic>.from(image.map((x) => x.toJson())),
-    "type": allTypeValues.reverse[type],
-    "url": url,
-  };
+        "id": id,
+        "name": name,
+        "role": roleValues.reverse[role],
+        "image": List<dynamic>.from(image.map((x) => x.toJson())),
+        "type": allTypeValues.reverse[type],
+        "url": url,
+      };
 }
 
 class DownloadUrl {
@@ -226,14 +228,14 @@ class DownloadUrl {
   });
 
   factory DownloadUrl.fromJson(Map<String, dynamic> json) => DownloadUrl(
-    quality: qualityValues.map[json["quality"]]!,
-    url: json["url"],
-  );
+        quality: qualityValues.map[json["quality"]]!,
+        url: json["url"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "quality": qualityValues.reverse[quality],
-    "url": url,
-  };
+        "quality": qualityValues.reverse[quality],
+        "url": url,
+      };
 }
 
 enum Quality {
@@ -258,13 +260,7 @@ final qualityValues = EnumValues({
   "96kbps": Quality.THE_96_KBPS
 });
 
-enum Role {
-  LYRICIST,
-  MUSIC,
-  PRIMARY_ARTISTS,
-  SINGER,
-  STARRING
-}
+enum Role { LYRICIST, MUSIC, PRIMARY_ARTISTS, SINGER, STARRING }
 
 final roleValues = EnumValues({
   "lyricist": Role.LYRICIST,
@@ -274,31 +270,18 @@ final roleValues = EnumValues({
   "starring": Role.STARRING
 });
 
-enum AllType {
-  ARTIST
-}
+enum AllType { ARTIST }
 
-final allTypeValues = EnumValues({
-  "artist": AllType.ARTIST
-});
+final allTypeValues = EnumValues({"artist": AllType.ARTIST});
 
-enum Language {
-  HINDI,
-  TELUGU
-}
+enum Language { HINDI, TELUGU }
 
-final languageValues = EnumValues({
-  "hindi": Language.HINDI,
-  "telugu": Language.TELUGU
-});
+final languageValues =
+    EnumValues({"hindi": Language.HINDI, "telugu": Language.TELUGU});
 
-enum ResultType {
-  SONG
-}
+enum ResultType { SONG }
 
-final resultTypeValues = EnumValues({
-  "song": ResultType.SONG
-});
+final resultTypeValues = EnumValues({"song": ResultType.SONG});
 
 class EnumValues<T> {
   Map<String, T> map;
@@ -310,4 +293,10 @@ class EnumValues<T> {
     reverseMap = map.map((k, v) => MapEntry(v, k));
     return reverseMap;
   }
+}
+
+class SearchModal {
+  String? name, singer;
+
+  SearchModal({required this.name, required this.singer});
 }
